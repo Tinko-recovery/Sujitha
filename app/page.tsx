@@ -283,7 +283,7 @@ export default function Portfolio() {
               <div className="absolute -inset-1 bg-gradient-to-r from-[#059669] to-[#10B981] rounded-[2.5rem] blur opacity-25 group-hover:opacity-40 transition duration-1000"></div>
               <div className="relative aspect-[4/5] rounded-[2.5rem] overflow-hidden border-8 border-white bg-slate-100 shadow-2xl">
                 <Image 
-                  src="/Sujitha/sujitha.jpg" 
+                  src="/sujitha.jpg" 
                   alt="Sujitha Sadish" 
                   fill
                   className="object-cover group-hover:scale-105 transition-transform duration-700"
