@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useRef, useEffect } from "react";
-import { motion, AnimatePresence } from "react-redux";
+import { motion, AnimatePresence } from "framer-motion";
 import { 
   Shield, Briefcase, Code, Database, Cpu, Zap, 
   Download, Award, BookOpen, Send, User, 
