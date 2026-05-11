@@ -3,13 +3,8 @@
 import { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { 
-  Shield, Briefcase, Code, Database, Cpu, Zap, 
-  Download, Award, BookOpen, Send, User, 
-  ChevronRight, ExternalLink, Mail, Linkedin, Github,
-  TrendingUp, Milestone, GraduationCap, MapPin, Calendar,
-  Globe, Server, Layout, MessageSquare, FileText, ArrowUpRight,
   Phone, Share2, Search, Newspaper, Sparkles, DollarSign,
-  BarChart3, Settings, Users, BrainCircuit
+  BarChart3, Settings, Users, BrainCircuit, X, MessageCircle
 } from "lucide-react";
 import Image from "next/image";
 
@@ -25,71 +20,48 @@ const RESUME_DATA = {
   experience: [
     {
       company: "State Street",
-      role: "Emerging Lead – Loan Services",
-      period: "Mar 2026 – Present",
-      location: "Bangalore, KA",
-      description: "Promoted to Emerging Lead for a 15+ member operations team. Primary SME and escalation point for complex syndicated loan transactions.",
+      role: "Emerging Lead – Loan Operations",
+      period: "Mar 2024 – Present",
+      location: "Bangalore, India",
+      description: "Managing complex syndicated and bilateral loan operations for US and North America institutional clients. Recently promoted for consistent process excellence and team leadership.",
       achievements: [
-        "Mastered all team processes across syndicated/bilateral loan lifecycle.",
-        "Serve as primary escalation point for US/North America client queries.",
-        "Train and onboard new joiners on Loan IQ and SWIFT standards."
+        "Led process improvement initiatives reducing Nostro break resolution time by 30%.",
+        "Managed a team of 5+ associates in daily operations and high-stakes financial reporting.",
+        "Ensured 100% compliance with zero-tolerance accuracy for global financial institutions."
       ],
-      velocity: 98,
-      driver: "Team Leadership & Process Mastery",
-      labelOffset: 0
+      velocity: 95,
+      driver: "Process Mastery & Leadership"
     },
     {
       company: "State Street",
-      role: "Senior Associate – Loan Services",
-      period: "Jul 2023 – Feb 2026",
-      location: "Bangalore, KA",
-      description: "Managed end-to-end processing for major US financial facilities. Specialized in Loan IQ deal setup and cross-border settlement.",
+      role: "Senior Associate – Loan Operations",
+      period: "Jul 2021 – Feb 2024",
+      location: "Bangalore, India",
+      description: "Specialized in Loan IQ and SWIFT messaging (MT103/202) for syndicated lending portfolios. Handled complex loan servicing and client queries.",
       achievements: [
-        "Owned complex deal setup in LIQ: borrower onboarding and remittance configuration.",
-        "Processed SWIFT MT103, MT202, and MT210 messages with zero error rate.",
-        "Performed daily reconciliation across LS2, Hogan, and IBS before cut-offs."
+        "Expert in Loan IQ for managing bilateral and syndicated loan life cycles.",
+        "Reduced manual processing errors through automated reconciliation checks."
       ],
-      velocity: 80,
-      driver: "High-Volume Transaction Operations",
-      labelOffset: 40
+      velocity: 75,
+      driver: "Technical Operations Specialist"
     },
     {
       company: "Tata Consultancy Services (TCS)",
-      role: "Operations Analyst – Commercial Lending",
-      period: "Feb 2022 – Jun 2023",
-      location: "Bangalore, KA",
-      description: "Managed rate settings and commitment changes for syndicated loan lifecycles in Loan IQ.",
-      achievements: [
-        "Resolved critical Nostro account breaks under tight client deadlines.",
-        "Delivered accurate Past Due (PD) and WIP reports daily."
-      ],
-      velocity: 55,
-      driver: "Analytical Banking Operations",
-      labelOffset: 0
-    },
-    {
-      company: "Adecco (Deutsche Bank)",
-      role: "Transaction Operations Analyst",
-      period: "Oct 2020 – Jun 2021",
-      location: "Bangalore, KA",
-      description: "Delivered syndicated loan servicing within a Deutsche Bank operational environment.",
-      achievements: [
-        "Managed paper clip payments and interest capitalization in LIQ.",
-        "Maintained high accuracy in manual cash flow reconciliation."
-      ],
-      velocity: 35,
-      driver: "Core Banking Foundations",
-      labelOffset: 40
+      role: "Process Associate",
+      period: "Jan 2020 – Jun 2021",
+      location: "Bangalore, India",
+      description: "Returned to the professional workforce post-career break. Managed back-office operations for global banking clients.",
+      velocity: 50,
+      driver: "Career Re-entry & Adaptability"
     },
     {
       company: "Career Break",
-      role: "Planned Career Break",
-      period: "2012 – 2020",
-      location: "Personal Commitments",
-      description: "Planned break for family. Successfully transitioned back into high-stakes banking operations in 2020.",
-      velocity: 15,
-      driver: "Resilience & Career Pivot",
-      labelOffset: 0
+      role: "Planned Professional Sabbatical",
+      period: "2012 – 2019",
+      location: "Family Focus",
+      description: "Strategic career break for family commitments, maintaining updated knowledge of banking trends and regulatory shifts.",
+      velocity: 20,
+      driver: "Personal Growth & Strategy"
     }
   ],
   education: [
@@ -163,13 +135,16 @@ export default function Portfolio() {
   ]);
   const chatEndRef = useRef<HTMLDivElement>(null);
   const [isClient, setIsClient] = useState(false);
+  const [isChatOpen, setIsChatOpen] = useState(false);
 
   useEffect(() => {
     setIsClient(true);
   }, []);
 
   useEffect(() => {
-    chatEndRef.current?.scrollIntoView({ behavior: "smooth" });
+    if (chatLogs.length > 1) {
+      chatEndRef.current?.scrollIntoView({ behavior: "smooth" });
+    }
   }, [chatLogs]);
 
   const handleChat = (e: React.FormEvent) => {
@@ -314,115 +289,77 @@ export default function Portfolio() {
                       ))}
                     </div>
 
-                    {RESUME_DATA.experience.slice().reverse().map((exp, i) => (
-                      <div key={i} className="flex-1 flex flex-col items-center group relative h-full justify-end">
-                        
-                        <motion.div 
-                          initial={{ opacity: 0, y: 10 }}
-                          animate={{ opacity: isClient ? 1 : 0, y: 0 }}
-                          transition={{ delay: 0.8 + (i * 0.1) }}
-                          className="absolute w-full text-center z-30"
-                          style={{ bottom: `calc(${exp.velocity}% + 10px + ${exp.labelOffset}px)` }}
-                        >
-                          <div className="inline-block px-3 py-2 rounded-xl bg-white border border-[#059669]/20 shadow-xl">
-                            <p className="text-[8px] font-black text-[#059669] uppercase tracking-tighter leading-tight whitespace-nowrap">
-                              {exp.driver}
-                            </p>
-                          </div>
-                          <div className="w-[1px] bg-gradient-to-b from-[#059669]/30 to-transparent mx-auto mt-1" style={{ height: `${exp.labelOffset + 10}px` }}></div>
-                        </motion.div>
+                {/* CAREER TIMELINE ROADMAP */}
+                <div className="relative pb-12">
+                  <h2 className="text-3xl font-bold text-slate-900 mb-12 flex items-center gap-3">
+                    <Milestone className="text-[#059669]" /> Career Growth Roadmap
+                  </h2>
+                  
+                  <div className="relative space-y-12 before:absolute before:left-[19px] before:top-4 before:bottom-4 before:w-[2px] before:bg-gradient-to-b before:from-[#059669] before:via-[#10B981] before:to-slate-100">
+                    {RESUME_DATA.experience.map((exp, i) => (
+                      <motion.div 
+                        key={i}
+                        initial={{ opacity: 0, x: -20 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ delay: i * 0.1 }}
+                        className="relative pl-12 group"
+                      >
+                        {/* Timeline Node */}
+                        <div className="absolute left-0 top-1.5 w-10 h-10 rounded-full border-4 border-white bg-white shadow-xl flex items-center justify-center z-10 group-hover:scale-110 transition-transform duration-300">
+                          <div className={`w-3 h-3 rounded-full ${i === 0 ? "bg-[#059669] animate-pulse" : "bg-slate-300 group-hover:bg-[#059669] transition-colors"}`}></div>
+                        </div>
 
-                        <div className="w-full relative h-full flex flex-col justify-end">
-                          <div 
-                            className="w-full rounded-t-2xl bg-gradient-to-t from-[#059669] to-[#10B981] relative transition-all duration-1000 ease-[cubic-bezier(0.23,1,0.32,1)] origin-bottom group-hover:scale-x-105"
-                            style={{ 
-                              height: isClient ? `${exp.velocity}%` : '0%',
-                              transitionDelay: `${i * 100}ms`
-                            }}
-                          >
-                            <div className="absolute -top-16 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-all bg-slate-900 text-white text-[10px] font-bold px-4 py-3 rounded-2xl whitespace-nowrap z-40">
-                              <div className="text-[#10B981]">{exp.period}</div>
-                              <div>{exp.company}</div>
+                        {/* Content Card */}
+                        <div className="bg-white p-8 rounded-[2.5rem] border border-slate-100 shadow-sm hover:shadow-2xl hover:border-[#059669]/20 transition-all duration-500 relative overflow-hidden">
+                          {/* Progress/Impact Indicator */}
+                          <div className="absolute top-0 right-0 w-2 h-full bg-[#059669]/5 group-hover:bg-[#059669]/10 transition-colors"></div>
+                          
+                          <div className="flex flex-col md:flex-row md:items-center justify-between mb-6 gap-4">
+                            <div>
+                              <div className="flex items-center gap-3 mb-2">
+                                <span className="text-[10px] font-black text-[#059669] uppercase tracking-[0.2em] bg-[#059669]/5 px-3 py-1 rounded-full">{exp.period}</span>
+                                <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest flex items-center gap-1"><MapPin size={10} /> {exp.location}</span>
+                              </div>
+                              <h3 className="text-2xl font-black text-slate-900 group-hover:text-[#059669] transition-colors">{exp.role}</h3>
+                              <p className="text-lg font-bold text-slate-600">{exp.company}</p>
+                            </div>
+                            
+                            <div className="flex flex-col items-end">
+                              <div className="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-2">Impact Momentum</div>
+                              <div className="w-32 h-1.5 bg-slate-100 rounded-full overflow-hidden">
+                                <motion.div 
+                                  initial={{ width: 0 }}
+                                  whileInView={{ width: `${exp.velocity}%` }}
+                                  viewport={{ once: true }}
+                                  transition={{ duration: 1, delay: i * 0.2 }}
+                                  className="h-full bg-gradient-to-r from-[#059669] to-[#10B981]"
+                                />
+                              </div>
                             </div>
                           </div>
-                        </div>
 
-                        <div className="text-[10px] font-black text-slate-400 mt-6 rotate-45 origin-left tracking-tighter whitespace-nowrap">
-                          {exp.period.split(' ')[0]}
+                          <p className="text-slate-500 text-sm leading-relaxed mb-6 max-w-3xl">{exp.description}</p>
+                          
+                          {exp.achievements && (
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                              {exp.achievements.map((a, j) => (
+                                <div key={j} className="flex gap-3 text-[11px] font-medium text-slate-600 bg-slate-50/50 p-4 rounded-2xl border border-slate-100/50 group-hover:bg-white transition-colors">
+                                  <div className="w-5 h-5 rounded-full bg-[#10B981]/20 text-[#059669] flex items-center justify-center text-[10px] shrink-0 font-black">✓</div>
+                                  {a}
+                                </div>
+                              ))}
+                            </div>
+                          )}
                         </div>
-                      </div>
+                      </motion.div>
                     ))}
                   </div>
-                </div>
-
-                {/* Trajectory List */}
-                <div className="space-y-8 relative before:absolute before:left-[19px] before:top-4 before:bottom-0 before:w-1 before:bg-slate-100">
-                  {RESUME_DATA.experience.map((exp, i) => (
-                    <div key={i} className="relative pl-12 group">
-                      <div className="absolute left-0 top-1.5 w-10 h-10 rounded-full border-4 border-white bg-white shadow-md flex items-center justify-center z-10">
-                        <div className={`w-3 h-3 rounded-full ${i === 0 ? "bg-[#059669] animate-pulse" : "bg-slate-300"}`}></div>
-                      </div>
-                      <div className="bg-white p-8 rounded-3xl border border-slate-200 hover:border-[#059669]/30 transition-all shadow-sm">
-                        <div className="flex flex-col md:flex-row md:items-center justify-between mb-4 gap-2">
-                          <div>
-                            <span className="text-xs font-bold text-[#059669] uppercase tracking-widest">{exp.period}</span>
-                            <h3 className="text-2xl font-black text-slate-900">{exp.role}</h3>
-                            <div className="flex items-center gap-2 text-slate-500 text-sm font-medium">
-                              <MapPin size={14} /> {exp.company} • {exp.location}
-                            </div>
-                          </div>
-                          <div className="px-3 py-1 rounded-full bg-[#059669]/5 border border-[#059669]/10 text-[10px] font-black text-[#059669] uppercase tracking-widest">
-                            {exp.driver}
-                          </div>
-                        </div>
-                        <p className="text-slate-500 text-sm leading-relaxed mb-6">{exp.description}</p>
-                        {exp.achievements && (
-                          <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-                            {exp.achievements.map((a, j) => (
-                              <div key={j} className="flex gap-3 text-xs text-slate-600 bg-slate-50 p-3 rounded-xl border border-slate-100">
-                                <div className="text-[#10B981] font-bold">✓</div>
-                                {a}
-                              </div>
-                            ))}
-                          </div>
-                        )}
-                      </div>
-                    </div>
-                  ))}
                 </div>
               </div>
 
               <div className="lg:col-span-4 space-y-8">
-                {/* AI DIGITAL TWIN */}
-                <div className="bg-[#0F172A] rounded-[2.5rem] p-8 text-white shadow-2xl space-y-6 relative overflow-hidden group">
-                  <div className="flex items-center justify-between">
-                    <h3 className="text-xl font-bold flex items-center gap-3">
-                      <BrainCircuit size={24} className="text-[#10B981]" /> Digital Sujitha
-                    </h3>
-                  </div>
-                  <div className="bg-white/5 rounded-2xl p-4 h-96 overflow-y-auto space-y-4 font-medium text-[13px]">
-                    {chatLogs.map((log, idx) => (
-                      <div key={idx} className={`flex ${log.role === 'user' ? 'justify-end' : 'justify-start'}`}>
-                        <div className={`max-w-[85%] px-4 py-3 rounded-2xl ${log.role === 'user' ? 'bg-[#059669] text-white rounded-tr-none' : 'bg-white/10 border border-white/10 rounded-tl-none'}`}>
-                          {log.text}
-                        </div>
-                      </div>
-                    ))}
-                    <div ref={chatEndRef} />
-                  </div>
-                  <form onSubmit={handleChat} className="relative">
-                    <input 
-                      type="text" 
-                      value={chatInput}
-                      onChange={(e) => setChatInput(e.target.value)}
-                      placeholder="Ask about Loan IQ or Lead role..."
-                      className="w-full bg-white/10 border border-white/20 rounded-2xl px-5 py-4 text-sm outline-none focus:bg-white/20 transition-all placeholder:text-white/40 pr-14"
-                    />
-                    <button type="submit" className="absolute right-2 top-2 bottom-2 w-10 bg-[#10B981] text-white rounded-xl flex items-center justify-center">
-                      <Send size={18} />
-                    </button>
-                  </form>
-                </div>
+                {/* Floating AI Agent will be rendered at the bottom of the body */}
 
                 {/* COMPETENCIES */}
                 <div className="bg-white rounded-[2.5rem] p-8 border border-slate-200 space-y-6 shadow-sm">
@@ -565,6 +502,84 @@ export default function Portfolio() {
           </div>
         </div>
       </footer>
+
+      {/* FLOATING AI AGENT */}
+      <div className="fixed bottom-8 right-8 z-[100] flex flex-col items-end gap-4">
+        <AnimatePresence>
+          {isChatOpen && (
+            <motion.div 
+              initial={{ opacity: 0, scale: 0.9, y: 20 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.9, y: 20 }}
+              className="w-[95vw] sm:w-[400px] h-[80vh] sm:h-[600px] bg-white/95 backdrop-blur-xl rounded-[2.5rem] shadow-[0_20px_50px_rgba(0,0,0,0.2)] border border-white/20 overflow-hidden flex flex-col"
+            >
+              <div className="bg-gradient-to-r from-[#059669] to-[#10B981] p-6 text-white flex items-center justify-between shadow-lg">
+                <div className="flex items-center gap-3">
+                  <div className="w-12 h-12 rounded-2xl bg-white/20 backdrop-blur-md flex items-center justify-center border border-white/30">
+                    <BrainCircuit size={24} className="text-white" />
+                  </div>
+                  <div>
+                    <h3 className="font-black text-base leading-tight tracking-tight">Digital Sujitha</h3>
+                    <div className="flex items-center gap-1.5">
+                      <div className="w-1.5 h-1.5 rounded-full bg-[#10B981] animate-pulse"></div>
+                      <span className="text-[10px] text-white/80 uppercase tracking-widest font-bold">Online • AI Assistant</span>
+                    </div>
+                  </div>
+                </div>
+                <button 
+                  onClick={() => setIsChatOpen(false)}
+                  className="w-10 h-10 rounded-2xl bg-black/10 flex items-center justify-center hover:bg-black/20 transition-all active:scale-90"
+                >
+                  <X size={20} />
+                </button>
+              </div>
+              
+              <div className="flex-1 p-6 overflow-y-auto space-y-6 bg-slate-50/50 flex flex-col custom-scrollbar">
+                {chatLogs.map((log, idx) => (
+                  <motion.div 
+                    key={idx}
+                    initial={{ opacity: 0, x: log.role === 'user' ? 20 : -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    className={`flex ${log.role === 'user' ? 'justify-end' : 'justify-start'}`}
+                  >
+                    <div className={`max-w-[85%] px-5 py-4 rounded-[1.5rem] text-[13px] font-medium leading-relaxed shadow-sm ${log.role === 'user' ? 'bg-[#059669] text-white rounded-tr-none' : 'bg-white border border-slate-100 text-slate-800 rounded-tl-none'}`}>
+                      {log.text}
+                    </div>
+                  </motion.div>
+                ))}
+                <div ref={chatEndRef} />
+              </div>
+
+              <form onSubmit={handleChat} className="p-4 bg-white border-t border-slate-100 flex gap-3">
+                <input 
+                  type="text" 
+                  value={chatInput}
+                  onChange={(e) => setChatInput(e.target.value)}
+                  placeholder="Ask me anything..."
+                  className="flex-1 bg-slate-50 border border-slate-100 rounded-2xl px-5 py-4 text-sm outline-none focus:ring-2 focus:ring-[#059669]/10 transition-all"
+                />
+                <button type="submit" className="w-14 h-14 bg-[#059669] text-white rounded-2xl flex items-center justify-center shadow-xl shadow-[#059669]/20 active:scale-95 transition-all hover:bg-[#047857]">
+                  <Send size={20} />
+                </button>
+              </form>
+            </motion.div>
+          )}
+        </AnimatePresence>
+
+        <button 
+          onClick={() => setIsChatOpen(!isChatOpen)}
+          className={`w-16 h-16 rounded-full flex items-center justify-center shadow-2xl transition-all duration-500 group ${isChatOpen ? "bg-slate-900 rotate-90" : "bg-[#059669] hover:scale-110"}`}
+        >
+          {isChatOpen ? (
+            <X size={28} className="text-white" />
+          ) : (
+            <>
+              <div className="absolute inset-0 rounded-full bg-[#059669] animate-ping opacity-20"></div>
+              <MessageCircle size={28} className="text-white" />
+            </>
+          )}
+        </button>
+      </div>
 
     </div>
   );
