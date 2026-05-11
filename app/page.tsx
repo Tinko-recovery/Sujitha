@@ -21,7 +21,7 @@ const RESUME_DATA = {
   email: "vrsuji87@gmail.com",
   phone: "+91 99723 75843",
   location: "Bangalore, India",
-  bio: "Loan operations professional with 4+ years of experience in syndicated and bilateral lending at State Street and Deutsche Bank. Recently promoted to Emerging Lead for process mastery and team impact, managing operations for US/North America clients with zero-tolerance accuracy.",
+  bio: "Loan operations professional with 6+ years of experience in syndicated and bilateral lending at State Street and Deutsche Bank. Recently promoted to Emerging Lead for process mastery and team impact, managing operations for US/North America clients with zero-tolerance accuracy.",
   experience: [
     {
       company: "State Street",
@@ -130,9 +130,9 @@ const RESUME_DATA = {
 
 const getAIResponse = (query: string) => {
   const q = query.toLowerCase();
-  if (q.includes("hi") || q.includes("hello")) return "Hello! I am Sujitha's Digital Twin. I can share details about her 4+ years of expertise in Loan Operations, her promotion to Emerging Lead, and her work with US/North America clients. How can I assist you?";
-  if (q.includes("contact") || q.includes("phone") || q.includes("email") || q.includes("reach")) {
-    return `You can reach Sujitha at ${RESUME_DATA.email} or call her at ${RESUME_DATA.phone}. She is based in ${RESUME_DATA.location} and available for immediate joining.`;
+  if (q.includes("hi") || q.includes("hello")) return "Hello! I am Sujitha's Digital Twin. I can share details about her 6+ years of expertise in Loan Operations, her promotion to Emerging Lead, and her work with US/North America clients. How can I assist you?";
+  if (q.includes("contact") || q.includes("phone") || q.includes("email") || q.includes("reach") || q.includes("info") || q.includes("details") || q.includes("linkedin") || q.includes("mobile")) {
+    return `Sujitha's professional contact details are: \n• Email: ${RESUME_DATA.email} \n• Phone: ${RESUME_DATA.phone} \n• LinkedIn: linkedin.com/in/sujitha-sadish \n• Location: ${RESUME_DATA.location}. \nShe is available for immediate joining.`;
   }
   if (q.includes("experience") || q.includes("work") || q.includes("history") || q.includes("loan")) {
     return `Sujitha is an Emerging Lead at State Street, specializing in Syndicated and Bilateral lending. She has deep expertise in Loan IQ, SWIFT (MT103/202), and managing Nostro breaks for global clients.`;
@@ -215,7 +215,7 @@ export default function Portfolio() {
               <a href={`tel:${RESUME_DATA.phone}`} className="flex items-center gap-2 hover:text-[#059669] transition-colors"><Phone size={16} /> {RESUME_DATA.phone}</a>
             </div>
             <div className="flex items-center gap-3">
-              <a href="https://linkedin.com/in/sujitha-sadish" className="w-9 h-9 rounded-full bg-slate-100 flex items-center justify-center text-slate-500 hover:bg-[#059669] hover:text-white transition-all"><Linkedin size={18} /></a>
+              <a href="https://linkedin.com/in/sujitha-sadish" target="_blank" rel="noopener noreferrer" className="w-9 h-9 rounded-full bg-slate-100 flex items-center justify-center text-slate-500 hover:bg-[#059669] hover:text-white transition-all"><Linkedin size={18} /></a>
               <button className="hidden sm:flex bg-[#059669] text-white px-6 py-2.5 rounded-full text-xs font-bold shadow-lg shadow-[#059669]/20 active:scale-95 transition-all">Get in Touch</button>
             </div>
           </div>
@@ -242,7 +242,7 @@ export default function Portfolio() {
             
             <div className="flex flex-wrap justify-center gap-10 pt-4">
               <div className="space-y-1">
-                <div className="text-3xl font-black text-[#059669]">4+ Yrs</div>
+                <div className="text-3xl font-black text-[#059669]">6+ Yrs</div>
                 <div className="text-[10px] text-slate-400 uppercase tracking-widest font-bold">Expertise</div>
               </div>
               <div className="space-y-1">
@@ -558,7 +558,7 @@ export default function Portfolio() {
             </div>
             <div className="flex flex-col items-center md:items-end gap-6">
               <div className="flex gap-4">
-                <a href="#" className="w-10 h-10 rounded-full bg-slate-50 flex items-center justify-center text-slate-400 hover:bg-[#059669] hover:text-white transition-all"><Linkedin size={20} /></a>
+                <a href="https://linkedin.com/in/sujitha-sadish" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-slate-50 flex items-center justify-center text-slate-400 hover:bg-[#059669] hover:text-white transition-all"><Linkedin size={20} /></a>
                 <a href="#" className="w-10 h-10 rounded-full bg-slate-50 flex items-center justify-center text-slate-400 hover:bg-[#059669] hover:text-white transition-all"><Mail size={20} /></a>
               </div>
               <p className="text-[10px] font-black text-slate-400 tracking-widest uppercase">© 2026 {RESUME_DATA.name} • Professional Portfolio</p>
