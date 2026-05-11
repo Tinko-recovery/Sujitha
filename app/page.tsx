@@ -225,8 +225,8 @@ export default function Portfolio() {
       <main className="max-w-6xl mx-auto px-6 py-12 lg:py-16 space-y-24">
 
         {/* INTRODUCTION & HERO */}
-        <section className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
-          <div className="lg:col-span-7 space-y-8">
+        <section className="flex flex-col items-center text-center space-y-12 py-8">
+          <div className="max-w-4xl space-y-8">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#10B981]/10 text-[#059669] text-xs font-bold uppercase tracking-wider">
               <Shield size={14} className="text-[#059669]" /> Emerging Lead – US Loan Services
             </div>
@@ -240,7 +240,7 @@ export default function Portfolio() {
               {RESUME_DATA.bio}
             </p>
             
-            <div className="flex flex-wrap gap-10 pt-4">
+            <div className="flex flex-wrap justify-center gap-10 pt-4">
               <div className="space-y-1">
                 <div className="text-3xl font-black text-[#059669]">4+ Yrs</div>
                 <div className="text-[10px] text-slate-400 uppercase tracking-widest font-bold">Expertise</div>
@@ -256,7 +256,7 @@ export default function Portfolio() {
             </div>
 
             {/* TAB SWITCHER */}
-            <div className="flex gap-1 p-1.5 bg-slate-200/50 rounded-2xl w-fit border border-slate-200 mt-8 overflow-x-auto max-w-full">
+            <div className="flex gap-1 p-1.5 bg-slate-200/50 rounded-2xl w-fit border border-slate-200 mt-8 overflow-x-auto max-w-full mx-auto">
               <button 
                 onClick={() => setActiveTab("operations")}
                 className={`px-6 py-3 rounded-xl text-xs font-bold transition-all whitespace-nowrap ${activeTab === "operations" ? "bg-white text-[#059669] shadow-xl" : "text-slate-500 hover:text-slate-700"}`}
@@ -278,19 +278,6 @@ export default function Portfolio() {
             </div>
           </div>
 
-          <div className="lg:col-span-5">
-            <div className="relative group">
-              <div className="absolute -inset-1 bg-gradient-to-r from-[#059669] to-[#10B981] rounded-[2.5rem] blur opacity-25 group-hover:opacity-40 transition duration-1000"></div>
-              <div className="relative aspect-[4/5] rounded-[2.5rem] overflow-hidden border-8 border-white bg-slate-100 shadow-2xl">
-                <Image 
-                  src="/sujitha.jpg" 
-                  alt="Sujitha Sadish" 
-                  fill
-                  className="object-cover group-hover:scale-105 transition-transform duration-700"
-                />
-              </div>
-            </div>
-          </div>
         </section>
 
         {/* DYNAMIC CONTENT SECTION */}
