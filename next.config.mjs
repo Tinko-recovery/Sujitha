@@ -2,6 +2,7 @@
 const nextConfig = {
   output: 'export',
   basePath: '/Sujitha',
+  trailingSlash: true,
   images: {
     unoptimized: true,
   },
