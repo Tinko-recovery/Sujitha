@@ -17,7 +17,28 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${inter.variable} ${mono.variable}`}>
-      <body className={inter.className}>{children}</body>
+      <body className={inter.className}>
+        {children}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Person",
+              "name": "Sujitha Sadish",
+              "jobTitle": "Emerging Lead – Loan Operations",
+              "worksFor": {
+                "@type": "Organization",
+                "name": "State Street"
+              },
+              "url": "https://tinko-recovery.github.io/Sujitha/",
+              "sameAs": [
+                "https://linkedin.com/in/sujitha-sadish"
+              ]
+            })
+          }}
+        />
+      </body>
     </html>
   );
 }
