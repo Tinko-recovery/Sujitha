@@ -230,17 +230,6 @@ export default function Portfolio() {
 
         {/* INTRODUCTION & HERO */}
         <section className="flex flex-col items-center text-center space-y-12 py-8">
-          <div className="relative group mb-4">
-            <div className="absolute -inset-1 bg-gradient-to-r from-[#059669] to-[#10B981] rounded-[2.5rem] blur opacity-25 group-hover:opacity-40 transition duration-1000"></div>
-            <div className="relative w-48 h-48 rounded-[2.5rem] overflow-hidden border-8 border-white bg-slate-100 shadow-2xl mx-auto">
-              <Image 
-                src="/sujitha.jpg" 
-                alt={RESUME_DATA.name} 
-                fill
-                className="object-cover group-hover:scale-105 transition-transform duration-700"
-              />
-            </div>
-          </div>
           <div className="max-w-4xl space-y-8">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#10B981]/10 text-[#059669] text-xs font-bold uppercase tracking-wider">
               <Shield size={14} className="text-[#059669]" /> Emerging Lead – US Loan Services
