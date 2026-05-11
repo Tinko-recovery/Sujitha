@@ -19,7 +19,7 @@ const RESUME_DATA = {
   name: "Sujitha Sadish",
   role: "Emerging Lead – Loan Operations | Syndicated & Bilateral Lending | US/North America Clients",
   email: "vrsuji87@gmail.com",
-  phone: "+91 99723 75843",
+  phone: "",
   location: "Bangalore, India",
   bio: "Loan operations professional with 6+ years of experience in syndicated and bilateral lending at State Street and Deutsche Bank. Recently promoted to Emerging Lead for process mastery and team impact, managing operations for US/North America clients with zero-tolerance accuracy.",
   experience: [
@@ -132,7 +132,7 @@ const getAIResponse = (query: string) => {
   const q = query.toLowerCase();
   if (q.includes("hi") || q.includes("hello")) return "Hello! I am Sujitha's Digital Twin. I can share details about her 6+ years of expertise in Loan Operations, her promotion to Emerging Lead, and her work with US/North America clients. How can I assist you?";
   if (q.includes("contact") || q.includes("phone") || q.includes("email") || q.includes("reach") || q.includes("info") || q.includes("details") || q.includes("linkedin") || q.includes("mobile")) {
-    return `Sujitha's professional contact details are: \n• Email: ${RESUME_DATA.email} \n• Phone: ${RESUME_DATA.phone} \n• LinkedIn: linkedin.com/in/sujitha-sadish \n• Location: ${RESUME_DATA.location}. \nShe is available for immediate joining.`;
+    return `Sujitha's professional contact details are: \n• Email: ${RESUME_DATA.email} \n• LinkedIn: linkedin.com/in/sujitha-sadish \n• Location: ${RESUME_DATA.location}. \nShe is available for immediate joining.`;
   }
   if (q.includes("experience") || q.includes("work") || q.includes("history") || q.includes("loan")) {
     return `Sujitha is an Emerging Lead at State Street, specializing in Syndicated and Bilateral lending. She has deep expertise in Loan IQ, SWIFT (MT103/202), and managing Nostro breaks for global clients.`;
@@ -195,7 +195,7 @@ export default function Portfolio() {
           transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
           className="whitespace-nowrap"
         >
-          {RESUME_DATA.email} • {RESUME_DATA.phone} • {RESUME_DATA.location} • {RESUME_DATA.email} • {RESUME_DATA.phone}
+          {RESUME_DATA.email} • {RESUME_DATA.location} • {RESUME_DATA.email} • {RESUME_DATA.location}
         </motion.div>
       </div>
 
@@ -212,7 +212,6 @@ export default function Portfolio() {
           <div className="flex items-center gap-4 sm:gap-6">
             <div className="hidden lg:flex items-center gap-4 text-xs font-bold text-slate-500 border-r border-slate-200 pr-6">
               <a href={`mailto:${RESUME_DATA.email}`} className="flex items-center gap-2 hover:text-[#059669] transition-colors"><Mail size={16} /> {RESUME_DATA.email}</a>
-              <a href={`tel:${RESUME_DATA.phone}`} className="flex items-center gap-2 hover:text-[#059669] transition-colors"><Phone size={16} /> {RESUME_DATA.phone}</a>
             </div>
             <div className="flex items-center gap-3">
               <a href="https://linkedin.com/in/sujitha-sadish" target="_blank" rel="noopener noreferrer" className="w-9 h-9 rounded-full bg-slate-100 flex items-center justify-center text-slate-500 hover:bg-[#059669] hover:text-white transition-all"><Linkedin size={18} /></a>
