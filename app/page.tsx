@@ -4,7 +4,8 @@ import { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { 
   Phone, Share2, Search, Newspaper, Sparkles, DollarSign,
-  BarChart3, Settings, Users, BrainCircuit, X, MessageCircle
+  BarChart3, Settings, Users, BrainCircuit, X, MessageCircle, Milestone, MapPin, GraduationCap, BookOpen, TrendingUp,
+  Mail, Linkedin, Globe, Calendar, Send, Shield
 } from "lucide-react";
 import Image from "next/image";
 
@@ -122,10 +123,17 @@ const getAIResponse = (query: string) => {
     return "She is an expert in Loan IQ (LIQ), LS2, Hogan, and SWIFT messaging (MT103/MT202/MT210), with a focus on zero-tolerance accuracy for Nostro and GL maintenance.";
   }
   if (q.includes("break") || q.includes("gap")) {
-    return "Sujitha took a planned career break between 2012-2020 for family commitments. She successfully returned in 2020 and has since rapidly advanced to a leadership role in banking operations.";
+    return "Sujitha took a planned career break between 2012-2019 for family commitments. She successfully returned in 2020 and has since rapidly advanced to a leadership role in banking operations.";
   }
   return "I'm equipped with Sujitha's full professional trajectory. Ask about her 'Lead Role', 'Loan IQ expertise', 'Contact Info', or 'Gen AI integration'.";
 };
+
+const QUICK_QUESTIONS = [
+  "Tell me about your Lead role.",
+  "What are your skills in Loan IQ?",
+  "How can I contact you?",
+  "Tell me about your career break."
+];
 
 export default function Portfolio() {
   const [activeTab, setActiveTab] = useState<"operations" | "ai" | "about">("operations");
@@ -136,6 +144,7 @@ export default function Portfolio() {
   const chatEndRef = useRef<HTMLDivElement>(null);
   const [isClient, setIsClient] = useState(false);
   const [isChatOpen, setIsChatOpen] = useState(false);
+  const [isTyping, setIsTyping] = useState(false);
 
   useEffect(() => {
     setIsClient(true);
@@ -154,10 +163,23 @@ export default function Portfolio() {
     setChatLogs(prev => [...prev, {role: 'user', text: userMsg}]);
     setChatInput("");
     
+    setIsTyping(true);
+    
     setTimeout(() => {
       const response = getAIResponse(userMsg);
       setChatLogs(prev => [...prev, {role: 'ai', text: response}]);
-    }, 600);
+      setIsTyping(false);
+    }, 1200);
+  };
+
+  const sendQuickQuestion = (q: string) => {
+    setChatLogs(prev => [...prev, {role: 'user', text: q}]);
+    setIsTyping(true);
+    setTimeout(() => {
+      const response = getAIResponse(q);
+      setChatLogs(prev => [...prev, {role: 'ai', text: response}]);
+      setIsTyping(false);
+    }, 1000);
   };
 
   return (
@@ -167,10 +189,18 @@ export default function Portfolio() {
       <div className="bg-[#059669] text-white text-[10px] font-bold uppercase tracking-[0.2em] py-2 text-center overflow-hidden">
         <motion.div 
           animate={{ x: [0, -100, 0] }}
-          transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
-          className="whitespace-nowrap"
+          transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
+          className="whitespace-nowrap flex gap-12 items-center justify-center"
         >
-          {RESUME_DATA.email} • {RESUME_DATA.location} • {RESUME_DATA.email} • {RESUME_DATA.location}
+          <span>{RESUME_DATA.email}</span>
+          <div className="w-1 h-1 rounded-full bg-[#10B981]"></div>
+          <span>{RESUME_DATA.location}</span>
+          <div className="w-1 h-1 rounded-full bg-[#10B981]"></div>
+          <span>Emerging Lead – US Loan Services</span>
+          <div className="w-1 h-1 rounded-full bg-[#10B981]"></div>
+          <span>{RESUME_DATA.email}</span>
+          <div className="w-1 h-1 rounded-full bg-[#10B981]"></div>
+          <span>{RESUME_DATA.location}</span>
         </motion.div>
       </div>
 
@@ -200,6 +230,17 @@ export default function Portfolio() {
 
         {/* INTRODUCTION & HERO */}
         <section className="flex flex-col items-center text-center space-y-12 py-8">
+          <div className="relative group mb-4">
+            <div className="absolute -inset-1 bg-gradient-to-r from-[#059669] to-[#10B981] rounded-[2.5rem] blur opacity-25 group-hover:opacity-40 transition duration-1000"></div>
+            <div className="relative w-48 h-48 rounded-[2.5rem] overflow-hidden border-8 border-white bg-slate-100 shadow-2xl mx-auto">
+              <Image 
+                src="/sujitha.jpg" 
+                alt={RESUME_DATA.name} 
+                fill
+                className="object-cover group-hover:scale-105 transition-transform duration-700"
+              />
+            </div>
+          </div>
           <div className="max-w-4xl space-y-8">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#10B981]/10 text-[#059669] text-xs font-bold uppercase tracking-wider">
               <Shield size={14} className="text-[#059669]" /> Emerging Lead – US Loan Services
@@ -215,16 +256,16 @@ export default function Portfolio() {
             </p>
             
             <div className="flex flex-wrap justify-center gap-10 pt-4">
-              <div className="space-y-1">
-                <div className="text-3xl font-black text-[#059669]">6+ Yrs</div>
+              <div className="space-y-1 group/stat cursor-default">
+                <div className="text-3xl font-black text-[#059669] group-hover/stat:scale-110 transition-transform">6+ Yrs</div>
                 <div className="text-[10px] text-slate-400 uppercase tracking-widest font-bold">Expertise</div>
               </div>
-              <div className="space-y-1">
-                <div className="text-3xl font-black text-[#059669]">Lead</div>
+              <div className="space-y-1 group/stat cursor-default">
+                <div className="text-3xl font-black text-[#059669] group-hover/stat:scale-110 transition-transform">Lead</div>
                 <div className="text-[10px] text-slate-400 uppercase tracking-widest font-bold">Operations</div>
               </div>
-              <div className="space-y-1">
-                <div className="text-3xl font-black text-[#059669]">Gen AI</div>
+              <div className="space-y-1 group/stat cursor-default">
+                <div className="text-3xl font-black text-[#059669] group-hover/stat:scale-110 transition-transform">Gen AI</div>
                 <div className="text-[10px] text-slate-400 uppercase tracking-widest font-bold">Adopter</div>
               </div>
             </div>
@@ -270,24 +311,6 @@ export default function Portfolio() {
                     <TrendingUp className="text-[#059669]" /> Career Growth & Team Impact
                   </h2>
                 </div>
-
-                {/* CAREER CHART */}
-                <div className="bg-white p-10 rounded-[3rem] border border-slate-200 shadow-sm overflow-visible h-[500px] flex flex-col relative">
-                  <div className="flex justify-between items-start mb-16">
-                    <div>
-                      <h4 className="text-xs font-black text-slate-400 uppercase tracking-widest mb-1">Process Mastery Mapping</h4>
-                      <p className="text-[10px] text-slate-400 font-medium italic">Tracking advancement from analyst to designated team SME.</p>
-                    </div>
-                  </div>
-                  
-                  <div className="flex-1 flex items-end gap-3 px-2 relative">
-                    <div className="absolute inset-0 flex flex-col justify-between pointer-events-none opacity-10 px-2 pb-16">
-                      {[100, 75, 50, 25, 0].map((level) => (
-                        <div key={level} className="border-t border-slate-900 w-full relative">
-                          <span className="absolute -left-8 -top-2 text-[8px] font-bold text-slate-400">{level}%</span>
-                        </div>
-                      ))}
-                    </div>
 
                 {/* CAREER TIMELINE ROADMAP */}
                 <div className="relative pb-12">
@@ -547,6 +570,36 @@ export default function Portfolio() {
                     </div>
                   </motion.div>
                 ))}
+                {isTyping && (
+                  <motion.div 
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    className="flex justify-start"
+                  >
+                    <div className="bg-white border border-slate-100 px-5 py-3 rounded-[1.5rem] rounded-tl-none shadow-sm flex items-center gap-2">
+                      <div className="flex gap-1">
+                        <span className="w-1.5 h-1.5 bg-[#059669] rounded-full animate-bounce" style={{ animationDelay: '0ms' }}></span>
+                        <span className="w-1.5 h-1.5 bg-[#059669] rounded-full animate-bounce" style={{ animationDelay: '150ms' }}></span>
+                        <span className="w-1.5 h-1.5 bg-[#059669] rounded-full animate-bounce" style={{ animationDelay: '300ms' }}></span>
+                      </div>
+                      <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Sujitha is thinking...</span>
+                    </div>
+                  </motion.div>
+                )}
+                
+                {!isTyping && chatLogs.length === 1 && (
+                  <div className="flex flex-wrap gap-2 pt-4">
+                    {QUICK_QUESTIONS.map((q, i) => (
+                      <button 
+                        key={i}
+                        onClick={() => sendQuickQuestion(q)}
+                        className="text-[11px] font-bold text-[#059669] bg-[#059669]/5 border border-[#059669]/10 px-4 py-2 rounded-xl hover:bg-[#059669] hover:text-white transition-all active:scale-95"
+                      >
+                        {q}
+                      </button>
+                    ))}
+                  </div>
+                )}
                 <div ref={chatEndRef} />
               </div>
 
@@ -585,4 +638,4 @@ export default function Portfolio() {
   );
 }
 
-// Final sync: 2026-05-11 03:20
+// Final sync: 2026-05-11 21:55
