@@ -143,7 +143,7 @@ const getAIResponse = (query: string) => {
   if (q.includes("promotion") || q.includes("lead") || q.includes("emerging")) {
     return "Sujitha was recently promoted to Emerging Lead at State Street. She now serves as the primary SME and escalation point for a 15+ member team handling complex US/North America loan facilities.";
   }
-  if (q.includes("education") || q.includes("mba") || q.includes("degree")) {
+  if (q.includes("education") || q.includes("mba") || q.includes("degree") || q.includes("qualification") || q.includes("study")) {
     return `Sujitha holds an MBA in Human Resources from Pondicherry University and a B.Com in Corporate Secretaryship.`;
   }
   if (q.includes("loan iq") || q.includes("liq") || q.includes("swift")) {
